@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 129111384}
   - component: {fileID: 129111387}
   - component: {fileID: 129111388}
+  - component: {fileID: 129111389}
   m_Layer: 0
   m_Name: green-bird-animates
   m_TagString: Untagged
@@ -418,6 +419,18 @@ PolygonCollider2D:
       - {x: -0.55, y: -2.78}
       - {x: -0.42999998, y: -2.53}
       - {x: -0.29, y: -2.56}
+--- !u!114 &129111389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129111383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba3bc56bfe28489ea035128e6070054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &363677131
 GameObject:
   m_ObjectHideFlags: 0
