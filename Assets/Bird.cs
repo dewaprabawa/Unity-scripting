@@ -7,14 +7,24 @@ public class Bird : MonoBehaviour
 {
     // Start is called before the first frame update
     private Vector3 initialPosition;
+    private bool birdWasLauched = false;
+    private float timeSittingAround;
     [SerializeField] private float launchPower = 250;
+
     private void Awake(){
         initialPosition = transform.position;
     }
 
     private void Update(){
 
-        if (transform.position.y > 10 || transform.position.y < -10 || transform.position.x > 10 || transform.position.x < -10){
+        GetComponent<LineRenderer>().SetPosition(1, initialPosition);
+        GetComponent<LineRenderer>().SetPosition(0,transform.position);
+
+        if (birdWasLauched && GetComponent<Rigidbody2D>().velocity.magnitude < 0.1){
+                timeSittingAround += Time.deltaTime; 
+        }
+
+        if (transform.position.y > 10 || transform.position.y < -10 || transform.position.x > 10 || transform.position.x < -10 || timeSittingAround > 3){
         string sceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(sceneName);
         }
@@ -36,14 +46,19 @@ public class Bird : MonoBehaviour
 
     private void OnMouseDown() {
        GetComponent<SpriteRenderer>().color = Color.red;
+       GetComponent<LineRenderer>().enabled = true;
     }
 
     private void OnMouseUp(){
         GetComponent<SpriteRenderer>().color = Color.white;
+     
 
         Vector2 directionToInitialDirection = initialPosition - transform.position;
         GetComponent<Rigidbody2D>().AddForce(directionToInitialDirection * launchPower);
         GetComponent<Rigidbody2D>().gravityScale = 1;
+        birdWasLauched = true;
+
+        GetComponent<LineRenderer>().enabled = false;
     }
 
     private void OnMouseDrag()
