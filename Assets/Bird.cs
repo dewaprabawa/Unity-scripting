@@ -13,7 +13,13 @@ public class Bird : MonoBehaviour
     }
 
     private void Update(){
+
+        if (transform.position.y > 10 || transform.position.y < -10 || transform.position.x > 10 || transform.position.x < -10){
         string sceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(sceneName);
+        }
+
+        /*
         if (transform.position.y > 10) {
             SceneManager.LoadScene(sceneName);
         }
@@ -24,7 +30,8 @@ public class Bird : MonoBehaviour
 
         if (transform.position.x > 10){
             SceneManager.LoadScene(sceneName);
-        }
+        }*/
+
     }
 
     private void OnMouseDown() {
