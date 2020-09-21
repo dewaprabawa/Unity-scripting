@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bird : MonoBehaviour
 {
@@ -11,6 +12,13 @@ public class Bird : MonoBehaviour
         initialPosition = transform.position;
     }
 
+    private void Update(){
+        if (transform.position.y > 0) {
+            string sceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(sceneName);
+        }
+    }
+
     private void OnMouseDown() {
        GetComponent<SpriteRenderer>().color = Color.red;
     }
@@ -19,7 +27,7 @@ public class Bird : MonoBehaviour
         GetComponent<SpriteRenderer>().color = Color.white;
 
         Vector2 directionToInitialDirection = initialPosition - transform.position;
-        GetComponent<Rigidbody2D>().AddForce(directionToInitialDirection);
+        GetComponent<Rigidbody2D>().AddForce(directionToInitialDirection * 100);
     }
 
     private void OnMouseDrag()
