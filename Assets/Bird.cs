@@ -7,7 +7,7 @@ public class Bird : MonoBehaviour
 {
     // Start is called before the first frame update
     private Vector3 initialPosition;
-
+    [SerializeField] private float launchPower = 250;
     private void Awake(){
         initialPosition = transform.position;
     }
@@ -27,7 +27,8 @@ public class Bird : MonoBehaviour
         GetComponent<SpriteRenderer>().color = Color.white;
 
         Vector2 directionToInitialDirection = initialPosition - transform.position;
-        GetComponent<Rigidbody2D>().AddForce(directionToInitialDirection * 100);
+        GetComponent<Rigidbody2D>().AddForce(directionToInitialDirection * launchPower);
+        GetComponent<Rigidbody2D>().gravityScale = 1;
     }
 
     private void OnMouseDrag()
