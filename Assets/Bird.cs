@@ -13,8 +13,16 @@ public class Bird : MonoBehaviour
     }
 
     private void Update(){
-        if (transform.position.y > 0) {
-            string sceneName = SceneManager.GetActiveScene().name;
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (transform.position.y > 10) {
+            SceneManager.LoadScene(sceneName);
+        }
+
+        if (transform.position.x < -10){
+            SceneManager.LoadScene(sceneName);
+        }
+
+        if (transform.position.x > 10){
             SceneManager.LoadScene(sceneName);
         }
     }
